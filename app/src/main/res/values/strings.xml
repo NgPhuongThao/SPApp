@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SPApp</string>
+    <string name="adoption">Adopter un animal</string>
+    <string name="accueil">Accueil</string>
+    <string name="signalement">Signaler</string>
+    <string name="defilement">Défiler...</string>
 </resources>
