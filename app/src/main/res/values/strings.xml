@@ -3,5 +3,6 @@
     <string name="adoption">Adopter un animal</string>
     <string name="accueil">Accueil</string>
     <string name="signalement">Signaler</string>
-    <string name="defilement">Défiler...</string>
+    <string name="francais">Français</string>
+    <string name="english">English</string>
 </resources>

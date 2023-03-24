@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/adoption"
-        app:showAsAction="always"
-        android:title="@string/adoption"
-        android:icon="@drawable/adoption"
-        />
-    <item
         android:id="@+id/accueil"
         app:showAsAction="always"
         android:title="@string/accueil"
         android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/adoption"
+        app:showAsAction="always"
+        android:title="@string/adoption"
+        android:icon="@drawable/adoption"
         />
     <item
         android:id="@+id/signalement"
@@ -20,7 +20,11 @@
         android:icon="@drawable/signalement"
         />
     <item
-        android:id="@+id/quitter"
-        android:title="@string/defilement"
+        android:id="@+id/francais"
+        android:title="@string/francais"
+        />
+    <item
+        android:id="@+id/english"
+        android:title="@string/english"
         />
 </menu>
