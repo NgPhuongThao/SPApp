@@ -1,25 +1,132 @@
 package com.example.spapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String TAG = "MainActivity:LOG";
+    private SQLClient bdd;
+
+    public void sauveDonnées(SQLClient bdd){
+        SQLiteDatabase dbW = bdd.getWritableDatabase();
+
+        // Pour pouvoir stocker les données envoyées à la BDD sans utilisation de SQL (Avec SQL- cf plus bas)
+        // Info d'une première personne
+        ContentValues valeursFormulaire1 = new ContentValues();
+        valeursFormulaire1.put("id", "1");
+        valeursFormulaire1.put("prenom", "Lucille");
+        valeursFormulaire1.put("telephone", "0606060606");
+        valeursFormulaire1.put("animal", "chien");
+        // Insertion dans la BDD
+        dbW.insert("Formulaire", null, valeursFormulaire1);
+
+        //*************************************************************************
+        // Info d'une deuxième personne
+        ContentValues valeursFormulaire2 = new ContentValues();
+        valeursFormulaire2.put("id", "2");
+        valeursFormulaire2.put("prenom", "Thao");
+        valeursFormulaire2.put("telephone", "0707070707");
+        valeursFormulaire2.put("animal", "chat");
+        // Insertion dans la BDD
+        dbW.insert("Formulaire", null, valeursFormulaire2);
+
+        // ferme la connexion en écriture à la BDD -- à vous de voir s'il faut ou non conserver la connexion ouverte ... Attention aux ressources...
+        dbW.close();
+    }
+
+    public void litDonnées(SQLClient bdd){
+        // Ouverture d'une connexion en lecture
+        SQLiteDatabase dbR = bdd.getWritableDatabase();
+
+        // Sans SQL (cf plus bas pour SQL)
+        String [] critèresDeProjection = {"id", "prenom", "telephone", "animal"};
+        String [] critèreDeSélection = {}; // Aucun critère donc tous les enregistrements
+
+        // Ouvre un curseur avec le(s) résultat(s)
+        Cursor curs = dbR.query("Formulaire", critèresDeProjection, "", critèreDeSélection, null, null, "prenom DESC");
+
+        // Traite les réponses contenues dans le curseur
+
+        // Y'a t'il au moins un résultat ?
+        if (curs.moveToFirst()) {
+            // Parcours des résultats
+            do {
+                // Récupération des données par le numéro de colonne
+                //long formulaireID = curs.getLong(0);
+                // ou avec le nom de la colonne (sans doute à privilégier pour la relecture du code)
+                long formulaireID = curs.getLong(curs.getColumnIndexOrThrow("id"));
+                // déclenche une exception si la colonne n'existe pas cf doc pour autres méthodes disponibles
+                String formulairePrenom = curs.getString(curs.getColumnIndexOrThrow("prenom"));
+
+                Log.v(MainActivity.TAG, formulaireID + " - " + formulairePrenom);
+
+            } while (curs.moveToNext());
+        }
+        else{
+            Toast.makeText(this, "Pas de réponses.....", Toast.LENGTH_SHORT).show();
+        }
+
+        //------------------------------------------------------------ Avec SQL
+        Cursor cursSQL = dbR.rawQuery("select id, prenom, telephone, animal from Formulaire order by prenom ASC", null);
+
+        // Le traitement des résultats est similaire à haut dessus.
+        // Y'a t'il au moins un résultat ?
+        if (curs.moveToFirst()) {
+            // Parcours des résultats
+            do {
+                // Récupération des données par le numéro de colonne
+                //long formulaireID = curs.getLong(0);
+                // ou avec le nom de la colonne (sans doute à privilégier pour la relecture du code)
+                long formulaireID = curs.getLong(curs.getColumnIndexOrThrow("id"));
+                // déclenche une exception si la colonne n'existe pas cf doc pour autres méthodes disponibles
+                String formulairePrenom = curs.getString(curs.getColumnIndexOrThrow("prenom"));
+
+                Log.v(MainActivity.TAG, formulaireID + " - " + formulairePrenom);
+
+            } while (curs.moveToNext());
+        }
+        else{
+            Toast.makeText(this, "Pas de réponses.....", Toast.LENGTH_SHORT).show();
+        }
+
+        // ferme la connexion en lecture à la BDD -- à vous de voir s'il faut ou non conserver la connexion ouverte ... Attention aux ressources...
+        //dbR.close();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // une instance de SQLClient suffit pour une activité et pour l'ensemble des tables...
+        this.bdd = new SQLClient(this);
+
+        // Illustration de l'écriture de données dans la BDD
+        this.sauveDonnées(bdd);
+
+        //########################################################################
+        // Illustration de la lecture de données dans la BDD
+        this.litDonnées(bdd);
+
+        // FINISH : Ferme l'instance de BDD ainsi que toutes les connexions ouvertes --> Voir onDestroy()
+        //bdd.close();
 
         Button btnSignalement = (Button) findViewById(R.id.bouton_signalement);
         btnSignalement.setOnClickListener(new View.OnClickListener() {
@@ -60,5 +167,39 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // FINISH : Ferme l'instance de BDD ainsi que toutes les connexions ouvertes
+        bdd.close();
+    }
+}
+
+
+class SQLClient extends SQLiteOpenHelper {
+
+    public static final int DATABASE_VERSION = 5;
+
+    public static final String  DATABASE_FILE = "formulaire.db";
+
+    public static final String SQL_CREATE = "CREATE TABLE IF NOT EXISTS Formulaire (id INTEGER PRIMARY KEY, prenom TEXT, telephone INTEGER, animal TEXT);";
+
+    public static final String SQL_DELETE = "DROP TABLE IF EXISTS Formulaire ;";
+
+    public SQLClient(Context context){
+        super (context, DATABASE_FILE, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(SQLClient.SQL_CREATE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQLClient.SQL_DELETE);
+        this.onCreate(db);
     }
 }
