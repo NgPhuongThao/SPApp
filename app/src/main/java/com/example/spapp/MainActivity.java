@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity:LOG";
     private SQLClient bdd;
 
-    public void sauveDonnées(SQLClient bdd){
+    public void sauveDonnees(SQLClient bdd){
         SQLiteDatabase dbW = bdd.getWritableDatabase();
 
         // Pour pouvoir stocker les données envoyées à la BDD sans utilisation de SQL (Avec SQL- cf plus bas)
@@ -51,16 +51,16 @@ public class MainActivity extends AppCompatActivity {
         dbW.close();
     }
 
-    public void litDonnées(SQLClient bdd){
+    public void litDonnees(SQLClient bdd){
         // Ouverture d'une connexion en lecture
         SQLiteDatabase dbR = bdd.getWritableDatabase();
 
         // Sans SQL (cf plus bas pour SQL)
-        String [] critèresDeProjection = {"id", "prenom", "telephone", "animal"};
-        String [] critèreDeSélection = {}; // Aucun critère donc tous les enregistrements
+        String [] criteresDeProjection = {"id", "prenom", "telephone", "animal"};
+        String [] critereDeSelection = {}; // Aucun critère donc tous les enregistrements
 
         // Ouvre un curseur avec le(s) résultat(s)
-        Cursor curs = dbR.query("Formulaire", critèresDeProjection, "", critèreDeSélection, null, null, "prenom DESC");
+        Cursor curs = dbR.query("Formulaire", criteresDeProjection, "", critereDeSelection, null, null, "prenom DESC");
 
         // Traite les réponses contenues dans le curseur
 
@@ -119,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
         this.bdd = new SQLClient(this);
 
         // Illustration de l'écriture de données dans la BDD
-        this.sauveDonnées(bdd);
+        this.sauveDonnees(bdd);
 
         //########################################################################
         // Illustration de la lecture de données dans la BDD
-        this.litDonnées(bdd);
+        this.litDonnees(bdd);
 
         // FINISH : Ferme l'instance de BDD ainsi que toutes les connexions ouvertes --> Voir onDestroy()
         //bdd.close();
@@ -177,29 +177,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-
-class SQLClient extends SQLiteOpenHelper {
-
-    public static final int DATABASE_VERSION = 5;
-
-    public static final String  DATABASE_FILE = "formulaire.db";
-
-    public static final String SQL_CREATE = "CREATE TABLE IF NOT EXISTS Formulaire (id INTEGER PRIMARY KEY, prenom TEXT, telephone INTEGER, animal TEXT);";
-
-    public static final String SQL_DELETE = "DROP TABLE IF EXISTS Formulaire ;";
-
-    public SQLClient(Context context){
-        super (context, DATABASE_FILE, null, DATABASE_VERSION);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQLClient.SQL_CREATE);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SQLClient.SQL_DELETE);
-        this.onCreate(db);
-    }
-}
