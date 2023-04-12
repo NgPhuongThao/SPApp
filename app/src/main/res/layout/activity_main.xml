@@ -23,7 +23,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:text="Si vous trouvez un animal égaré, veuillez nous le faire savoir via le formulaire suivant :"
+        android:text="@string/accueil_signalement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Signaler un animal abandonné"
+        android:text="@string/signaler_un_animal_abandonne"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="Qu'est-ce que la SPA ?"
+        android:text="@string/qu_est_ce_que_la_spa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bouton_signalement" />
 
@@ -55,7 +55,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:text="La Société Protectrice des Animaux (SPA) est, historiquement en France, la première association qui œuvre dans le domaine de la protection animale. Depuis 176 ans, elle se mobilise pour venir en aide aux animaux en détresse et pour promouvoir le bien-être animal auprès des Français."
+        android:text="@string/presentation_spa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />

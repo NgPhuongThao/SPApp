@@ -5,12 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -18,7 +12,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="Animal trouvé ? Prévenez-nous en remplissant ce formulaire !"
+        android:text="@string/signalement_introduction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Votre nom et prénom"
+        android:text="@string/nom_prenom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -41,7 +35,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Ex : Jean Dupont"
+        android:hint="@string/ex_nom_prenom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -51,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Votre numéro de téléphone"
+        android:text="@string/numero_telephone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
@@ -63,7 +57,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Ex : 06 00 00 00 00"
+        android:hint="@string/ex_numero_telephone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -73,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Type d'animal"
+        android:text="@string/type_animal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
@@ -90,13 +84,13 @@
             android:id="@+id/radio_chat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chat" />
+            android:text="@string/chat" />
 
         <RadioButton
             android:id="@+id/radio_chien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chien" />
+            android:text="@string/chien" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Autre :" />
+                android:text="@string/autre" />
 
             <EditText
                 android:id="@+id/espece"
@@ -117,7 +111,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Précisez..." />
+                android:hint="@string/precisez" />
         </LinearLayout>
 
     </RadioGroup>
@@ -128,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Localisation"
+        android:text="@string/localisation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -146,18 +140,18 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Adresse..." />
+            android:hint="@string/adresse" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chercher l'adresse" />
+            android:text="@string/chercher_l_adresse" />
     </LinearLayout>
 
     <Button
@@ -166,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="151dp"
         android:layout_marginTop="32dp"
-        android:text="Valider"
+        android:text="@string/valider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

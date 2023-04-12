@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Recherche..." />
+            android:text="@string/recherche" />
 
         <Button
             android:id="@+id/btnRechercher"
@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="Rechercher" />
+            android:hint="@string/rechercher" />
     </LinearLayout>
 
     <ListView
