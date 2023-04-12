@@ -5,15 +5,36 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdoptionActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adoption);
+
+        ListView liste = findViewById(R.id.liste);
+
+        List<String> listeValeursDansLaListe = new ArrayList<>();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listeValeursDansLaListe);
+
+        liste.setAdapter(adapter);
+
+        listeValeursDansLaListe.add("Pasha | Chien");
+        listeValeursDansLaListe.add("Bouille | Chien");
+        listeValeursDansLaListe.add("Jazz | Chat");
+        listeValeursDansLaListe.add("Toupie | Lapin");
+        listeValeursDansLaListe.add("Parrot | Perroquet");
+
+        adapter.notifyDataSetChanged();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
