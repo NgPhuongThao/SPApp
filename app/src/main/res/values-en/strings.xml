@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">SPApp</string>
     <string name="adoption">Adopt an animal</string>
     <string name="accueil">Home</string>
     <string name="signalement">Report</string>
-    <string name="francais" translatable="false">Français</string>
-    <string name="english" translatable="false">English</string>
     <string name="accueil_introduction">If you found a lost animal, please report it to us through this form:</string>
     <string name="signaler_un_animal_abandonne">Report a lost animal</string>
     <string name="qu_est_ce_que_la_spa">What is the SPA ?</string>
@@ -26,4 +23,5 @@
     <string name="adresse">Address...</string>
     <string name="chercher_l_adresse">Search an address</string>
     <string name="valider">Validate</string>
+    <string name="animal_name_collar_or_choose_one">Animal name (collar or choose one)</string>
 </resources>
