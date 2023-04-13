@@ -23,11 +23,12 @@ public class SignalementActivity extends AppCompatActivity {
         Button btnValider = findViewById(R.id.button2);
         EditText entreePrenom = findViewById(R.id.editTextTextPersonName3);
         EditText entreePhone = findViewById(R.id.editTextTextPersonName4);
+        EditText entreeNomAnimal = findViewById(R.id.editTextTextPersonName);
         RadioButton chien = findViewById(R.id.radio_chien);
         RadioButton chat = findViewById(R.id.radio_chat);
         RadioButton autre = findViewById(R.id.radio_autre);
         EditText entreeAutre = findViewById(R.id.espece);
-
+        EditText entreeLieu = findViewById(R.id.editTextTextPersonName6);
 
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,9 +41,11 @@ public class SignalementActivity extends AppCompatActivity {
                 } else if (chat.isChecked()) {
                     animal = "Chat";
                 }
+                String nomAnimal = entreeNomAnimal.getText().toString();
+                String lieu = entreeLieu.getText().toString();
 
                 SQLClient bd = new SQLClient(SignalementActivity.this);
-                bd.insererDonnees(prenom, telephone, animal);
+                bd.insererDonnees(prenom, telephone, animal, nomAnimal, lieu);
 
                 entreePrenom.setText("");
                 entreePhone.setText("");
@@ -50,6 +53,8 @@ public class SignalementActivity extends AppCompatActivity {
                 chien.setChecked(false);
                 chat.setChecked(false);
                 autre.setChecked(false);
+                entreeNomAnimal.setText("");
+                entreeLieu.setText("");
 
                 Toast.makeText(getApplicationContext(), "Animal enregistré", Toast.LENGTH_LONG).show();
             }
