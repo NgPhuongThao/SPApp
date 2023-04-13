@@ -23,4 +23,6 @@
     <string name="adresse">Adresse...</string>
     <string name="chercher_l_adresse">Chercher l\'adresse</string>
     <string name="valider">Valider</string>
+    <string name="fenix">Fenix</string>
+    <string name="animal_name_collar_or_choose_one">Nom de l\'animal (collier ou vous choisissez)</string>
 </resources>
