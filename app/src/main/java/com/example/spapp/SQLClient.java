@@ -78,29 +78,4 @@ public class SQLClient extends SQLiteOpenHelper {
 
         return dataList;
     }
-
-    public ArrayList<String> getDonnees() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ArrayList<String> dataList = new ArrayList<>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOM, null);
-        if (cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") String prenom = cursor.getString(cursor.getColumnIndex(COL_PRENOM));
-                @SuppressLint("Range") String telephone = cursor.getString(cursor.getColumnIndex(COL_TELEPHONE));
-                @SuppressLint("Range") String animal = cursor.getString(cursor.getColumnIndex(COL_ANIMAL));
-                @SuppressLint("Range") String nomAnimal = cursor.getString(cursor.getColumnIndex(COL_NOMANIMAL));
-                @SuppressLint("Range") String lieu = cursor.getString(cursor.getColumnIndex(COL_LOCALISATION));
-
-                String data = prenom + " - " + telephone + " - " + animal + " - " + nomAnimal + " - " + lieu;
-                dataList.add(data);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-
-        return dataList;
-    }
 }

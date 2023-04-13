@@ -27,7 +27,7 @@ public class AdoptionActivity extends AppCompatActivity {
         ListView liste = findViewById(R.id.liste);
 
         SQLClient bdd = new SQLClient(this);
-        ArrayList<String> data = bdd.getDonnees();
+        ArrayList<String> data = bdd.getAnimal();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         liste.setAdapter(adapter);
 

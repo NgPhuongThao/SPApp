@@ -15,11 +15,13 @@ public class DescriptionActivity extends AdoptionActivity {
         setContentView(R.layout.activity_description);
 
         String intent = getIntent().getStringExtra("texteListe");
+        String[] elements = intent.split("-");
 
-        TextView animal = findViewById(R.id.textView10);
-        animal.setText(intent);
-        TextView personne = findViewById(R.id.textView14);
-        TextView phone = findViewById((R.id.textView16));
+        TextView nomAnimal = findViewById(R.id.textView10);
+        nomAnimal.setText(elements[0]);
+
+        TextView animal = findViewById(R.id.textView12);
+        animal.setText(elements[1]);
 
         Button retour = findViewById(R.id.button3);
         retour.setOnClickListener(new View.OnClickListener() {
