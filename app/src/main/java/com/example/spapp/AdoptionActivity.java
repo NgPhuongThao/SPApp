@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,6 +39,16 @@ public class AdoptionActivity extends AppCompatActivity {
 //        listeValeursDansLaListe.add("Parrot | Perroquet");
 //
 //        adapter.notifyDataSetChanged();
+
+        liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String valeurItem = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(AdoptionActivity.this, DescriptionActivity.class);
+                intent.putExtra("texteListe", valeurItem);
+                startActivity(intent);
+            }
+        });
 
     }
     @Override
