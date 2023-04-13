@@ -1,6 +1,9 @@
 package com.example.spapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -85,8 +88,14 @@ public class AdoptionActivity extends AppCompatActivity {
 
         if (requestCode == LAUNCH_DESCRIPTION_ACTIVITY) {
             if(resultCode == AdoptionActivity.RESULT_OK){
-                String result=data.getStringExtra("result"); // Faire le traitement pour supprimer l'animal adopté
+                String result = data.getStringExtra("result"); // Faire le traitement pour supprimer l'animal adopté
 
+                SQLClient bdd = new SQLClient(this);
+                SQLiteDatabase db = bdd.getReadableDatabase();
+
+                db.execSQL("DELETE * FROM sauveurs WHERE nomAnimal = " + result, null);
+
+                db.close();
             }
         }
     } //onActivityResult

@@ -38,7 +38,7 @@ public class DescriptionActivity extends AdoptionActivity {
             @Override
             public void onClick(View view) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("result","mettre_le_truc_pour_supprimer_de_la_bdd");
+                returnIntent.putExtra("result", elements[0]);
                 setResult(DescriptionActivity.RESULT_OK,returnIntent);
                 finish();
             }
