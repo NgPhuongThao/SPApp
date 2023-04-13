@@ -36,8 +36,14 @@ public class SignalementActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.english:
+                LocaleHelper.setLocale(SignalementActivity.this, "");
+                finish();
+                startActivity(getIntent());
                 break;
             case R.id.francais:
+                LocaleHelper.setLocale(SignalementActivity.this, "fr");
+                finish();
+                startActivity(getIntent());
                 break;
             default:
                 return super.onOptionsItemSelected(item);

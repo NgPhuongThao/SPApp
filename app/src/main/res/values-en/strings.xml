@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">SPApp</string>
+    <string name="adoption">Adopt an animal</string>
+    <string name="accueil">Home</string>
+    <string name="signalement">Report</string>
+    <string name="francais" translatable="false">Français</string>
+    <string name="english" translatable="false">English</string>
+    <string name="accueil_introduction">If you found a lost animal, please report it to us through this form:</string>
+    <string name="signaler_un_animal_abandonne">Report a lost animal</string>
+    <string name="qu_est_ce_que_la_spa">What is the SPA ?</string>
+    <string name="presentation_spa">The Animal Protection Company (SPA) is, historically in France, the first active organization in animal protection. For 176 years, we have helped animals in distress and promoted animal well-being.</string>
+    <string name="recherche">Search...</string>
+    <string name="rechercher">Search</string>
+    <string name="signalement_introduction">Found a lost animal? Please report it to us through this form!</string>
+    <string name="nom_prenom">Your name and forename</string>
+    <string name="ex_nom_prenom">Ex : Jean Dupont</string>
+    <string name="numero_telephone">Your phone number</string>
+    <string name="ex_numero_telephone">Ex : 06 00 00 00 00</string>
+    <string name="type_animal">Specie</string>
+    <string name="chat">Cat</string>
+    <string name="chien">Dog</string>
+    <string name="autre">Other:</string>
+    <string name="precisez">Precisions...</string>
+    <string name="localisation">Localization</string>
+    <string name="adresse">Address...</string>
+    <string name="chercher_l_adresse">Search an address</string>
+    <string name="valider">Validate</string>
+</resources>

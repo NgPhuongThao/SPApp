@@ -57,8 +57,14 @@ public class AdoptionActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.english:
+                LocaleHelper.setLocale(AdoptionActivity.this, "");
+                finish();
+                startActivity(getIntent());
                 break;
             case R.id.francais:
+                LocaleHelper.setLocale(AdoptionActivity.this, "fr");
+                finish();
+                startActivity(getIntent());
                 break;
             default:
                 break;

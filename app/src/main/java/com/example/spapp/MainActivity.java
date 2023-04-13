@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Pour pouvoir stocker les données envoyées à la BDD sans utilisation de SQL (Avec SQL- cf plus bas)
         // Info d'une première personne
-        ContentValues valeursFormulaire1 = new ContentValues();
+        /*ContentValues valeursFormulaire1 = new ContentValues();
         valeursFormulaire1.put("id", "1");
         valeursFormulaire1.put("prenom", "Lucille");
         valeursFormulaire1.put("telephone", "0606060606");
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         valeursFormulaire2.put("telephone", "0707070707");
         valeursFormulaire2.put("animal", "chat");
         // Insertion dans la BDD
-        dbW.insert("Formulaire", null, valeursFormulaire2);
+        dbW.insert("Formulaire", null, valeursFormulaire2);*/
 
         // ferme la connexion en écriture à la BDD -- à vous de voir s'il faut ou non conserver la connexion ouverte ... Attention aux ressources...
         dbW.close();
@@ -109,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         // ferme la connexion en lecture à la BDD -- à vous de voir s'il faut ou non conserver la connexion ouverte ... Attention aux ressources...
         //dbR.close();
     }
+    Context context;
+    Resources resources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,8 +163,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.english:
+                LocaleHelper.setLocale(MainActivity.this, "");
+                finish();
+                startActivity(getIntent());
                 break;
             case R.id.francais:
+                LocaleHelper.setLocale(MainActivity.this, "fr");
+                finish();
+                startActivity(getIntent());
                 break;
             default:
                 break;
