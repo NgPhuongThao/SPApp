@@ -22,19 +22,22 @@ public class AdoptionActivity extends AppCompatActivity {
 
         ListView liste = findViewById(R.id.liste);
 
-        List<String> listeValeursDansLaListe = new ArrayList<>();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listeValeursDansLaListe);
-
+//        List<String> listeValeursDansLaListe = new ArrayList<>();
+//
+        SQLClient bdd = new SQLClient(this);
+        ArrayList<String> data = bdd.getDonnees();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
+//
         liste.setAdapter(adapter);
+//
+//        listeValeursDansLaListe.add("Pasha | Chien");
+//        listeValeursDansLaListe.add("Bouille | Chien");
+//        listeValeursDansLaListe.add("Jazz | Chat");
+//        listeValeursDansLaListe.add("Toupie | Lapin");
+//        listeValeursDansLaListe.add("Parrot | Perroquet");
+//
+//        adapter.notifyDataSetChanged();
 
-        listeValeursDansLaListe.add("Pasha | Chien");
-        listeValeursDansLaListe.add("Bouille | Chien");
-        listeValeursDansLaListe.add("Jazz | Chat");
-        listeValeursDansLaListe.add("Toupie | Lapin");
-        listeValeursDansLaListe.add("Parrot | Perroquet");
-
-        adapter.notifyDataSetChanged();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
