@@ -25,4 +25,6 @@
     <string name="valider">Valider</string>
     <string name="fenix">Fenix</string>
     <string name="animal_name_collar_or_choose_one">Nom de l\'animal (collier ou vous choisissez)</string>
+    <string name="adopt">Adopter</string>
+    <string name="back">Retour</string>
 </resources>

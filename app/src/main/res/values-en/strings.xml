@@ -24,4 +24,6 @@
     <string name="chercher_l_adresse">Search an address</string>
     <string name="valider">Validate</string>
     <string name="animal_name_collar_or_choose_one">Animal name (collar or choose one)</string>
+    <string name="adopt">Adopt</string>
+    <string name="back">Back</string>
 </resources>

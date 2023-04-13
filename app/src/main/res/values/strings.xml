@@ -27,4 +27,6 @@
     <string name="valider">Validate</string>
     <string name="animal_name_collar_or_choose_one">Animal name (collar or choose one)</string>
     <string name="fenix" translatable="false">Ex: Fenix</string>
+    <string name="adopt">Adopt</string>
+    <string name="back">Back</string>
 </resources>

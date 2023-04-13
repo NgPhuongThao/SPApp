@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdoptionActivity extends AppCompatActivity {
+    int LAUNCH_DESCRIPTION_ACTIVITY = 1;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -35,7 +37,8 @@ public class AdoptionActivity extends AppCompatActivity {
                 String valeurItem = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(AdoptionActivity.this, DescriptionActivity.class);
                 intent.putExtra("texteListe", valeurItem);
-                startActivity(intent);
+
+                startActivityForResult(intent, LAUNCH_DESCRIPTION_ACTIVITY);
             }
         });
 
@@ -75,4 +78,17 @@ public class AdoptionActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_DESCRIPTION_ACTIVITY) {
+            if(resultCode == AdoptionActivity.RESULT_OK){
+                String result=data.getStringExtra("result"); // Faire le traitement pour supprimer l'animal adopté
+
+            }
+        }
+    } //onActivityResult
+
 }
