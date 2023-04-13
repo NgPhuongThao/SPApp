@@ -13,8 +13,17 @@ public class DescriptionActivity extends AdoptionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
+        String intent = getIntent().getStringExtra("texteListe");
+
+
         TextView animal = findViewById(R.id.textView10);
-        animal.setText(getIntent().getStringExtra("texteListe"));
+        animal.setText(intent);
+
+        TextView personne = findViewById(R.id.textView14);
+
+
+        TextView phone = findViewById((R.id.textView16));
+
 
         Button retour = findViewById(R.id.button3);
 
