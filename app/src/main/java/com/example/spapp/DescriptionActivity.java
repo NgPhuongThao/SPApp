@@ -2,6 +2,7 @@ package com.example.spapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,8 +39,9 @@ public class DescriptionActivity extends AdoptionActivity {
             @Override
             public void onClick(View view) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("result", elements[0]);
-                setResult(DescriptionActivity.RESULT_OK,returnIntent);
+                String result = elements[0].substring(0, elements[0].length() - 1);
+                returnIntent.putExtra("result", result);
+                setResult(DescriptionActivity.RESULT_OK, returnIntent);
                 finish();
             }
         });

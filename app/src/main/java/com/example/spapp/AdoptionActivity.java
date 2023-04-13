@@ -1,10 +1,12 @@
 package com.example.spapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdoptionActivity extends AppCompatActivity {
-    int LAUNCH_DESCRIPTION_ACTIVITY = 1;
+    public static final int LAUNCH_DESCRIPTION_ACTIVITY = 1;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> data;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,9 +34,9 @@ public class AdoptionActivity extends AppCompatActivity {
         ListView liste = findViewById(R.id.liste);
 
         SQLClient bdd = new SQLClient(this);
-        ArrayList<String> data = bdd.getAnimal();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
-        liste.setAdapter(adapter);
+        this.data = bdd.getAnimal();
+        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, this.data);
+        liste.setAdapter(this.adapter);
 
         liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,16 +92,18 @@ public class AdoptionActivity extends AppCompatActivity {
 
         if (requestCode == LAUNCH_DESCRIPTION_ACTIVITY) {
             if(resultCode == AdoptionActivity.RESULT_OK){
-                String result = data.getStringExtra("result"); // Faire le traitement pour supprimer l'animal adopté
+                String result = data.getStringExtra("result");
 
                 SQLClient bdd = new SQLClient(this);
                 SQLiteDatabase db = bdd.getReadableDatabase();
-
-                db.execSQL("DELETE * FROM sauveurs WHERE nomAnimal = " + result, null);
-
+                db.execSQL("DELETE FROM sauveurs WHERE nomAnimal = '" + result + "'");
+                Log.v("Activity","DELETE FROM sauveurs WHERE nomAnimal = '" + result + "'");
                 db.close();
+
+                this.data.clear();
+                this.data = bdd.getAnimal();
+                this.adapter.notifyDataSetChanged();
             }
         }
     } //onActivityResult
-
 }
