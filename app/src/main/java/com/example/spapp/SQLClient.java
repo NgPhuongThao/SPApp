@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLClient extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 10;
     private static final String  DATABASE_NAME = "formulaire.db";
     private static final String TABLE_NOM = "sauveurs";
     private static final String COL_PRENOM = "prenom";
@@ -35,6 +35,13 @@ public class SQLClient extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQLClient.SQL_CREATE);
+
+        String insertQuery = "INSERT INTO sauveurs VALUES (\"Paul\", \"0607080901\", \"Chat\", \"Mimi\", \"Toulouse\")";
+        db.execSQL(insertQuery);
+        String insertQuery2 = "INSERT INTO sauveurs VALUES (\"Pierre\", \"0615654953\", \"Lapin\", \"Lapinou\", \"Paris\")";
+        db.execSQL(insertQuery2);
+        String insertQuery3 = "INSERT INTO sauveurs VALUES (\"Ophélie\", \"0685941568\", \"Chien\", \"Pasha\", \"Toulouse\")";
+        db.execSQL(insertQuery3);
     }
 
     @Override
